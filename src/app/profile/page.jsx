@@ -21,7 +21,7 @@ export default function Profile() {
                 <h3>Matéria: Front-End com Back-End</h3>
                 <h4>Minha API serve para estudantes e avaliações onde eu posso ter acesso a todos
                     os dados dos estudantes e avaliações.</h4>
-                <Link href="/alunos" prefetch>
+                <Link href="/estudantes" prefetch>
                     <Button type="primary">Acessar minha API via NET</Button>
                 </Link>
             </div>
