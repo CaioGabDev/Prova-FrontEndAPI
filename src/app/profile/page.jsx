@@ -1,10 +1,10 @@
 import styles from "./Profile.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "antd";
+import Button from "../../components/Button";
 
 export default function Profile() {
-    return (
+    return (    
         <div className={styles.container}>
             <div className={styles.cardCentral}>
             <h1>Estudantes e Avaliação</h1>
@@ -22,7 +22,7 @@ export default function Profile() {
                 <h4>Minha API serve para estudantes e avaliações onde eu posso ter acesso a todos
                     os dados dos estudantes e avaliações.</h4>
                 <Link href="/estudantes" prefetch>
-                    <Button type="primary">Acessar minha API via NET</Button>
+                    <Button title="Acessar minha API via NET" />
                 </Link>
             </div>
         </div>

@@ -14,7 +14,7 @@ export default function Estudantes() {
     estudantes: [],
     loading: true,
     current: 1,
-    pageSize: 0,
+    pageSize: 5,
   });
 
   const [modalInfo, setModalInfo] = useState({
@@ -25,23 +25,12 @@ export default function Estudantes() {
   });
 
   useEffect(() => {
-    sessionStorage.removeItem("estudantesData");
     const fetchEstudantes = async () => {
-      const cached = getSessionStorage("estudantesData", []);
-      if (cached.length > 0) {
-        console.log("Estudantes no cache:", cached.length);
-        setData({ estudantes: cached, loading: false, current: 1, pageSize: 5 });
-        return;
-      }
-
       try {
         const { data: estudantes } = await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/estudante`,
-          {
-            headers: HEADERS,
-          }
+          { headers: HEADERS }
         );
-        setSessionStorage("estudanteData", estudantes);
         setData({ estudantes, loading: false, current: 1, pageSize: 5 });
       } catch {
         toast.error("Erro ao carregar estudantes");
@@ -55,21 +44,11 @@ export default function Estudantes() {
   const openModal = async (estudante) => {
     setModalInfo({ visible: true, estudante, avaliacao: null, loading: true });
 
-    const cacheKey = `avaliacao_${estudante.id}`;
-    const cached = getSessionStorage(cacheKey, null);
-    if (cached) {
-      setModalInfo((m) => ({ ...m, avaliacao: cached, loading: false }));
-      return;
-    }
-
     try {
       const { data: avaliacao } = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/avaliacao/${estudante.id}`,
-        {
-          headers: HEADERS,
-        }
+        { headers: HEADERS }
       );
-      setSessionStorage(cacheKey, avaliacao);
       setModalInfo((m) => ({ ...m, avaliacao, loading: false }));
     } catch {
       toast.error("Erro ao carregar avaliação.");
@@ -77,7 +56,7 @@ export default function Estudantes() {
     }
   };
 
-  const paginatedEstudante = () => {
+  const paginatedEstudantes = () => {
     const start = (data.current - 1) * data.pageSize;
     return data.estudantes.slice(start, start + data.pageSize);
   };
@@ -88,7 +67,7 @@ export default function Estudantes() {
       <Pagination
         current={data.current}
         pageSize={data.pageSize}
-        total={data.estudante.length}
+        total={data.estudantes.length}
         onChange={(page, size) =>
           setData((d) => ({ ...d, current: page, pageSize: size }))
         }
@@ -114,7 +93,7 @@ export default function Estudantes() {
               cover={
                 <Image
                   alt={estudante.name}
-                  src={estudante.photo ? estudante.photo : "/images/220.svg"}
+                  src={estudante.photo || "/images/220.svg"}
                   width={220}
                   height={220}
                 />
