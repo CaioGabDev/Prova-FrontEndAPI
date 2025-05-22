@@ -1,9 +1,9 @@
-import styles from "./Profile.module.css";
+import styles from "./Home.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../../components/Button";
 
-export default function Profile() {
+export default function Home() {
     return (    
         <div className={styles.container}>
             <div className={styles.cardCentral}>
@@ -19,8 +19,9 @@ export default function Profile() {
                 <h2>Turma: 2TDS1</h2>
                 <h3>Instrutores: Thiago e Marcelo</h3>
                 <h3>Matéria: Front-End com Back-End</h3>
-                <h4>Minha API serve para estudantes e avaliações onde eu posso ter acesso a todos
-                    os dados dos estudantes e avaliações.</h4>
+                <h4>Minha API serve para buscar estudantes e avaliações onde eu posso ter acesso a todos
+                    os dados dos estudantes e avaliações utilizando as melhores práticas de desenvolvimento web,
+                     focando em performance, modularidade, responsividade e UX|UI.</h4>
                 <Link href="/estudantes" prefetch>
                     <Button title="Acessar minha API via NET" />
                 </Link>

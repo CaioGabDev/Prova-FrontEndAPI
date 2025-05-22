@@ -16,9 +16,8 @@
     justify-content: space-between;
     background-color: rgb(241, 241, 241);
     border-radius: 10px;
-    width: 37rem;   
-    height: 30rem;  
-    margin-top: 4rem;
+    width: 39rem;   
+    height: 34rem;  
     border: 2px solid black;
 }
 
@@ -29,7 +28,7 @@
 
 
 .cardCentral h4 {
-    width: 25rem;
+    width: 30rem;
     font-size: 0.9rem;
 }
 

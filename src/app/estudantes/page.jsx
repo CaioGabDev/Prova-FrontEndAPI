@@ -62,9 +62,10 @@ export default function Estudantes() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.bloco}>
       <h1>Lista de Estudantes</h1>
-      <Pagination
+      <Pagination className={styles.pagination}
         current={data.current}
         pageSize={data.pageSize}
         total={data.estudantes.length}
@@ -72,7 +73,7 @@ export default function Estudantes() {
           setData((d) => ({ ...d, current: page, pageSize: size }))
         }
         showSizeChanger
-        pageSizeOptions={["5", "10", "100"]}
+        pageSizeOptions={["5", "10", "50"]}
       />
 
       {data.loading ? (
@@ -101,13 +102,13 @@ export default function Estudantes() {
             >
               <Card.Meta
                 title={estudante.name}
-                description={estudante.numero_registro}
+                description={`Número do registro: ${estudante.numero_registro}`}
               />
             </Card>
           ))}
         </div>
       )}
-
+      </div>
       <Modal
         title={`Avaliação de ${modalInfo.estudante?.name}`}
         open={modalInfo.visible}
